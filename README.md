@@ -1,8 +1,35 @@
-A code analysis tool based on the llvm project (version 14)
-go to build folder and run 
+A code analysis tool based on the llvm project (version 14).
+
+
+A pass is added to the optimization pipeline, so it analyses
+whether a function might call another function.
+The idea is to build a call graph and see if there exists a path
+from one node to the other.
+
+Go to llvm-project/build/ folder
+
+run 
   * ``./rerunScript.sh``
-to see the compiler being built and then run with hi.c.
-Currently still does not support command line arguments--needs time to be sorted.
+to see the compiler being built and then run with hi.c (at different optimization levels).
+
+The compiler has already been built, so one can run it without building:
+  *``clang hi.c``
+  
+This is a MWE which needs to be refined.
+
+Currently it still does not support command line arguments--needs time to be sorted.
+It will output every pair of functions and see if one can call another.
+
+Some optimization passes are done even if -O0 is chosen, need to find a way 
+to insert the pass before any optimization is done. Examples like
+```
+if(0)
+  foo();
+```
+cannot be handled yet.
+
+Function pointers are being looked at, but currently the trackCandidateCallees
+still cannot find out the set of candidate functions an indirect call could possibly use.
 
 
 
