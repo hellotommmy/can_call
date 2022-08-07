@@ -31,6 +31,22 @@ cannot be handled yet.
 Function pointers are being looked at, but currently the trackCandidateCallees
 still cannot find out the set of candidate functions an indirect call could possibly use.
 
+The main files to look at are in 
+
+llvm/lib/Transforms/Hello/Hello.cpp
+
+and
+
+llvm/lib/Transforms/Hello/GraphDataStruct.h
+
+
+
+
+
+
+
+
+
 
 
 
