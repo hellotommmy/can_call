@@ -13,7 +13,7 @@ run
 to see the compiler being built and then run with hi.c (at different optimization levels).
 
 The compiler has already been built, so one can run it without building:
-  *``clang hi.c``
+  * ``clang hi.c``
   
 This is a MWE which needs to be refined.
 
