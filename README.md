@@ -1,5 +1,8 @@
 A code analysis tool based on the llvm project (version 14)
-
+go to build folder and run 
+  * ``./rerunScript.sh``
+to see the compiler being built and then run with hi.c.
+Currently still does not support command line arguments--needs time to be sorted.
 
 
 

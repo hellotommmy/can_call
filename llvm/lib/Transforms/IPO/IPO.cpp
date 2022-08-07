@@ -26,6 +26,7 @@ void llvm::initializeIPO(PassRegistry &Registry) {
   initializeOpenMPOptCGSCCLegacyPassPass(Registry);
   initializeAnnotation2MetadataLegacyPass(Registry);
   initializeCalledValuePropagationLegacyPassPass(Registry);
+  initializeCalledValuePropagationLegacyPass1Pass(Registry);
   initializeConstantMergeLegacyPassPass(Registry);
   initializeCrossDSOCFIPass(Registry);
   initializeDAEPass(Registry);
@@ -67,6 +68,10 @@ void LLVMInitializeIPO(LLVMPassRegistryRef R) {
 
 void LLVMAddCalledValuePropagationPass(LLVMPassManagerRef PM) {
   unwrap(PM)->add(createCalledValuePropagationPass());
+}
+
+void LLVMAddCalledValuePropagationPass1(LLVMPassManagerRef PM) {
+  unwrap(PM)->add(createCalledValuePropagationPass1());
 }
 
 void LLVMAddConstantMergePass(LLVMPassManagerRef PM) {
