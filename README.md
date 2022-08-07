@@ -12,9 +12,8 @@ run
   * ``./rerunScript.sh``
 to see the compiler being built and then run with hi.c (at different optimization levels).
 
-The compiler has already been built, so one can run it without building:
-  * ``clang hi.c``
-  
+To my best knowledge clang itself cannot be statically linked, so we don't have a runnable standalone binary.
+
 This is a MWE which needs to be refined.
 
 Currently it still does not support command line arguments--needs time to be sorted.
