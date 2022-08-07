@@ -41,6 +41,7 @@
 #include "llvm/Transforms/IPO/ArgumentPromotion.h"
 #include "llvm/Transforms/IPO/Attributor.h"
 #include "llvm/Transforms/IPO/CalledValuePropagation.h"
+#include "llvm/Transforms/Hello/CalledValuePropagation1.h"
 #include "llvm/Transforms/IPO/ConstantMerge.h"
 #include "llvm/Transforms/IPO/CrossDSOCFI.h"
 #include "llvm/Transforms/IPO/DeadArgumentElimination.h"
@@ -944,6 +945,8 @@ PassBuilder::buildModuleSimplificationPipeline(OptimizationLevel Level,
   // Attach metadata to indirect call sites indicating the set of functions
   // they may target at run-time. This should follow IPSCCP.
   MPM.addPass(CalledValuePropagationPass());
+  
+  MPM.addPass(CalledValuePropagationPass1());
 
   // Optimize globals to try and fold them into constants.
   MPM.addPass(GlobalOptPass());
@@ -1543,6 +1546,8 @@ PassBuilder::buildLTODefaultPipeline(OptimizationLevel Level,
     // Attach metadata to indirect call sites indicating the set of functions
     // they may target at run-time. This should follow IPSCCP.
     MPM.addPass(CalledValuePropagationPass());
+
+    MPM.addPass(CalledValuePropagationPass1());
   }
 
   // Now deduce any function attributes based in the current code.

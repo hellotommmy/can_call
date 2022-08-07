@@ -40,6 +40,9 @@
 #include "llvm/Transforms/Scalar/SimpleLoopUnswitch.h"
 #include "llvm/Transforms/Utils.h"
 #include "llvm/Transforms/Vectorize.h"
+#include "llvm/Transforms/Utils/HelloWorld.h"
+//TODO: CSTAN
+
 
 using namespace llvm;
 
@@ -164,6 +167,12 @@ cl::opt<AttributorRunOption> AttributorRun(
                           "disable attributor runs")));
 
 extern cl::opt<bool> EnableKnowledgeRetention;
+
+//FIXME: CSTAN
+//Getting arguments from the command line
+//cl::opt<std::string> CallerName(cl::Positional, cl::desc("<caller function name>"), cl::Required);
+//cl::opt<std::string> CalleeName(cl::Positional, cl::desc("<callee function name"), cl::Required);
+
 } // namespace llvm
 
 PassManagerBuilder::PassManagerBuilder() {
@@ -580,6 +589,9 @@ void PassManagerBuilder::populateModulePassManager(
   // Allow forcing function attributes as a debugging and tuning aid.
   MPM.add(createForceFunctionAttrsLegacyPass());
 
+  //TODO: Added by user CSTan
+  //MPM.add(createOCFIPass());
+
   // If all optimizations are disabled, just run the always-inline pass and,
   // if enabled, the function merging pass.
   if (OptLevel == 0) {
@@ -628,6 +640,11 @@ void PassManagerBuilder::populateModulePassManager(
 
   MPM.add(createIPSCCPPass());          // IP SCCP
   MPM.add(createCalledValuePropagationPass());
+
+  //FIXME: CSTAN
+  MPM.add(createCalledValuePropagationPass1());
+
+
 
   MPM.add(createGlobalOptimizerPass()); // Optimize out global vars
   // Promote any localized global vars.

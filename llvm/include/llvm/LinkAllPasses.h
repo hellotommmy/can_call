@@ -90,6 +90,8 @@ namespace {
       (void) llvm::createStructurizeCFGPass();
       (void) llvm::createLibCallsShrinkWrapPass();
       (void) llvm::createCalledValuePropagationPass();
+
+      (void) llvm::createCalledValuePropagationPass1();
       (void) llvm::createConstantMergePass();
       (void) llvm::createCostModelAnalysisPass();
       (void) llvm::createDeadArgEliminationPass();
